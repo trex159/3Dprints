@@ -1,170 +1,224 @@
+:root {
+    --bg-primary: #f4f4f4;
+    --bg-secondary: #ffffff;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --accent-color: #1889c2;
+    --header-bg: #d3d3d3;
+    --product-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --accent-color: #3da9e2;
+    --header-bg: #2d2d2d;
+    --product-bg: #333333;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
 }
-a {
-    margin: 0;
-    font-size: 14px;
-    color: #1889c2;
-}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     line-height: 1.6;
 }
 
 header {
-    background-color: #d3d3d3;
-    color: #424242;
-    padding: 1rem 0;
+    background-color: var(--header-bg);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.logo {
     text-align: center;
 }
 
 .logo img {
     width: 150px;
+    height: auto;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
+    display: flex;
+    gap: 2rem;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #29292a;
+nav a {
+    color: var(--text-primary);
     text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.mode-button {
+    display: block;
+    margin: 0.5rem auto;
+    padding: 0.5rem 1rem;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mode-button:hover {
+    background-color: #156a9e;
 }
 
 .intro {
     text-align: center;
-    padding: 50px 0;
-    background-color: #000000;
-    color: #fff;
+    padding: 4rem 2rem;
+    background-color: var(--accent-color);
+    color: white;
 }
 
 .chefs {
-    display: flex;
-    justify-content: space-around;
-    padding: 50px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .chef {
-    flex: 1 1 300px;
-    margin: 20px;
-    max-width: 500px;
-    text-align: center;
-    background-color: #fbfbfb;
+    background-color: var(--bg-secondary);
+    padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.chef:hover {
+    transform: translateY(-5px);
 }
 
 .chef img {
     width: 150px;
+    height: 150px;
     border-radius: 50%;
-    transition: transform 0.3s ease;
+    object-fit: cover;
+    margin-bottom: 1rem;
 }
 
-.chef img:hover {
-    transform: scale(1.1);
-}
-
-.chef h2 {
-    margin-top: 10px;
-}
-
-.chef p {
-    text-align: justify;
-    font-size: 1rem;
-    padding: 10px;
-}
-
-.products {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px;
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .product {
-    background-color: #acadb1;
-    padding: 20px;
-    margin: 10px;
-    width: 300px;
+    background-color: var(--product-bg);
+    padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: transform 0.3s;
 }
 
 .product:hover {
     transform: translateY(-5px);
 }
 
-.product img {
+.product img, .product video {
     width: 100%;
     border-radius: 8px;
+    margin-bottom: 1rem;
 }
 
 .buy-button {
-    display: block;
-    background-color: #5a585f;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
     text-decoration: none;
+    border-radius: 4px;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
 }
 
 .buy-button:hover {
-    background-color: #27242a;
+    background-color: #156a9e;
 }
 
-.mode-button {
-    display: block;
-    background-color: #5a585f;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;
+.about, .contact, .social-media {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    color: var(--accent-color);
     text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    transition: all 0.3s;
 }
 
-.mode-button:hover {
-    background-color: #27242a;
-}
-
-.chef vid {
-    width: 150px;
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-}
-.chef vid:hover {
-    transform: scale(1.1);
-}
-
-.video-section {
-    margin-top: 20px;
-}
-video {
-    width: 100%;
-    max-width: 600px; /* Maximale Breite des Videos */
-    border-radius: 10px; /* Abgerundete Ecken für das Video */
-    margin-top: 20px;
+.social-links a:hover {
+    background-color: var(--accent-color);
+    color: white;
 }
 
 footer {
     text-align: center;
-    margin-top: 20px;
-    color: #bcbdbe;
+    padding: 2rem;
+    background-color: var(--header-bg);
+    color: var(--text-secondary);
+    margin-top: 2rem;
 }
 
-/* Code and Design by Trex159 */
+@media (max-width: 768px) {
+    .chefs, .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}
